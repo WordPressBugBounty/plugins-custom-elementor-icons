@@ -3,9 +3,9 @@ Contributors: gdprcompliancewp
 Donate link: https://www.calculator.io/
 Tags: elementor, icon, icons, elementor icon, fontello
 Requires at least: 4.6
-Requires PHP: 5.6
-Tested up to: 6.5.5
-Stable tag: 1.0.6
+Requires PHP: 7.1
+Tested up to: 7.1
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,13 @@ Allows users to integrate their own custom icons into Elementor's native icon co
 
 
 == Changelog ==
+
+= 1.0.7 =
+* Security: the uploaded icon set is now validated. Only font files with a whitelisted extension are extracted from the ZIP, the font name must be a plain slug, and icon names are no longer written into executable PHP; icons are read from selection.json instead.
+* Security: the font upload no longer requests the extracted SVG over HTTP, and the temp folder is no longer made world-writable.
+* The menu page requires the manage_options capability; uploads still require update_plugins.
+* Internal classes, constants and the upload capability filter were renamed with a full plugin prefix (the filter is now custom_elementor_icons_file_upload_capability; the old avf_file_upload_capability still works).
+* Fixed the icon search, which broke because the tag attribute was never printed.
 
 = 1.0.6 =
 * Minor bug fix

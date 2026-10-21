@@ -1,6 +1,10 @@
 <?php
 
-namespace CEI\Classes;
+namespace Custom_Elementor_Icons\Classes;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class Nonces {
 

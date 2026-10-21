@@ -1,6 +1,10 @@
 <?php
 
-namespace CEI\Classes\Admin;
+namespace Custom_Elementor_Icons\Classes\Admin;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class AdminMenu {
 
@@ -9,7 +13,7 @@ class AdminMenu {
 	 */
 	public static function init() {
 		add_action( 'admin_menu', [self::class, 'admin_menu_pages'] );
-		add_filter( 'plugin_action_links_' . plugin_basename(CEI_FILE), [self::class, 'plugin_action_links'] );
+		add_filter( 'plugin_action_links_' . plugin_basename(CUSTOM_ELEMENTOR_ICONS_FILE), [self::class, 'plugin_action_links'] );
 	}
 
 	/**
@@ -19,9 +23,9 @@ class AdminMenu {
 		add_menu_page(
 			esc_html__( 'Custom Icons', 'custom-elementor-icons' ),
 			esc_html__( 'Custom Icons', 'custom-elementor-icons' ),
-			'administrator',
+			'manage_options',
 			'custom-elementor-icons',
-			'CEI\Classes\Admin\DashboardController::render',
+			'Custom_Elementor_Icons\Classes\Admin\DashboardController::render',
 			'dashicons-art',
 			30
 		);

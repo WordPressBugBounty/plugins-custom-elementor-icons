@@ -1,6 +1,10 @@
 <?php
 
-namespace CEI\Classes;
+namespace Custom_Elementor_Icons\Classes;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class Template {
 
@@ -33,7 +37,7 @@ class Template {
 		if ( $echo == null ) {
             return self::load( $template_name, $args );
         }
-		echo self::load( $template_name, $args );
+		echo self::load( $template_name, $args ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the template escapes everything it prints.
 	}
 
 	/**
@@ -45,20 +49,18 @@ class Template {
 	 * @return bool|string
 	 */
 	public static function load( $template_name, $args = array(), $template_path = 'cei/', $default_path = '' ) {
-		ob_start();
-		if ( is_array( $args ) ) {
-            extract( $args );
-        }
 		$file = self::locate_template( $template_name, $template_path, $default_path );
 		if ( ! file_exists( $file ) ) {
             return false;
         }
+		$custom_elementor_icons_fonts = ( is_array( $args ) && isset( $args['fonts'] ) ) ? $args['fonts'] : array();
+		ob_start();
 		include( $file );
 		return ob_get_clean();
 	}
 
 	public static function template_path() {
-		 return apply_filters( 'cei_template_path', 'cei/' );
+		 return apply_filters( 'cei_template_path', 'cei/' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- public hook kept for backward compatibility.
 	}
 
 	/**
@@ -68,6 +70,6 @@ class Template {
 		if ( ! empty( $default_path ) ) {
             return untrailingslashit( $default_path );
         }
-		return untrailingslashit( CEI_PATH . '/templates/' );
+		return untrailingslashit( CUSTOM_ELEMENTOR_ICONS_PATH . '/templates/' );
 	}
 }

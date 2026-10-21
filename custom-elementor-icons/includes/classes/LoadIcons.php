@@ -1,6 +1,10 @@
 <?php
 
-namespace CEI\Classes;
+namespace Custom_Elementor_Icons\Classes;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class LoadIcons {
 
@@ -120,39 +124,23 @@ class LoadIcons {
 	 * @return mixed
 	 */
 	public function add_vc_custom_icons( $fonts ) {
+		if ( ! is_array( $this->custom_fonts ) ) {
+			return $fonts;
+		}
+
 		foreach ( $this->custom_fonts as $font_name => $info ) {
-			$icon_set   = array();
-			$icons      = array();
-			$upload_dir = wp_upload_dir();
-			$path       = trailingslashit( $upload_dir['basedir'] );
-			$file       = $path . $info['include'] . '/' . $info['config'];
+			$data = FontData::load( $info );
 
-			if ( ! empty( $info['json'] ) ) {
-				$json = $path . $info['include'] . '/' . $info['json'];
-				if ( file_exists( $json ) ) {
-					$json   = json_decode( file_get_contents( $json ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-					$prefix = $json['preferences']['fontPref']['prefix'];
-				}
-			} else {
-				$prefix = $font_name . '-';
+			if ( empty( $data['icons'] ) ) {
+				continue;
 			}
 
-			if ( file_exists( $file ) ) {
-				include $file;
-			}
+			$prefix = $data['prefix'];
 
-			if ( ! empty( $icons ) ) {
-				$icon_set = array_merge( $icon_set, $icons );
-			}
-
-			if ( ! empty( $icon_set ) ) {
-				foreach ( $icon_set as $icons ) {
-					foreach ( $icons as $icon ) {
-						$fonts[ $font_name ][] = array(
-							$prefix . $icon['class'] => $icon['class'],
-						);
-					}
-				}
+			foreach ( $data['icons'] as $icon ) {
+				$fonts[ $font_name ][] = array(
+					$prefix . $icon['class'] => $icon['class'],
+				);
 			}
 		}
 

@@ -8,16 +8,16 @@
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: custom-elementor-icons
- * Version: 1.0.6
+ * Version: 1.0.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'CEI_VERSION', '1.0.6' );
-define( 'CEI_FILE', __FILE__ );
-define( 'CEI_PATH', dirname( CEI_FILE ) );
-define( 'CEI_INCLUDES_PATH', CEI_PATH . '/includes/' );
-define( 'CEI_CLASSES_PATH', CEI_INCLUDES_PATH . 'classes/' );
-define( 'CEI_URL', plugin_dir_url( CEI_FILE ) );
+define( 'CUSTOM_ELEMENTOR_ICONS_VERSION', '1.0.7' );
+define( 'CUSTOM_ELEMENTOR_ICONS_FILE', __FILE__ );
+define( 'CUSTOM_ELEMENTOR_ICONS_PATH', dirname( CUSTOM_ELEMENTOR_ICONS_FILE ) );
+define( 'CUSTOM_ELEMENTOR_ICONS_INCLUDES_PATH', CUSTOM_ELEMENTOR_ICONS_PATH . '/includes/' );
+define( 'CUSTOM_ELEMENTOR_ICONS_CLASSES_PATH', CUSTOM_ELEMENTOR_ICONS_INCLUDES_PATH . 'classes/' );
+define( 'CUSTOM_ELEMENTOR_ICONS_URL', plugin_dir_url( CUSTOM_ELEMENTOR_ICONS_FILE ) );
 
-require_once( CEI_INCLUDES_PATH . '/autoload.php' );
+require_once( CUSTOM_ELEMENTOR_ICONS_INCLUDES_PATH . '/autoload.php' );

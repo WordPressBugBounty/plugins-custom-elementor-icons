@@ -31,7 +31,40 @@
         $.stmTrigger.media_new();
         $("body").on('cei_upload_font', $.stmTrigger.icon_insert);
         $("body").on('click', '.cei_delete_font', $.stmTrigger.icon_remove);
+        $.stmTrigger.icon_search();
     });
+    $.stmTrigger.icon_search = function () {
+        var i18n = cei_window.i18n || {};
+        $(".search-icon").on('keyup', function () {
+            var filter = $(this).val(), count = 0, regex;
+            try {
+                regex = new RegExp(filter, "i");
+            } catch (e) {
+                regex = new RegExp(filter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "i");
+            }
+            $(".fonts-count").hide();
+            $(".icons-list li").each(function () {
+                if (regex.test($(this).attr("data-icons-tag") || '')) {
+                    $(this).show();
+                    count++;
+                } else {
+                    $(this).fadeOut();
+                }
+            });
+            var holder = $(".search-count").empty();
+            if (count === 0) {
+                holder.append(document.createTextNode(' ' + (i18n.not_found || '') + ' '));
+                var link = $('<a href="#stm_upload_icon" class="add-new-h2 stm_upload_icon" data-target="iconfont_upload" data-type="application/octet-stream, application/zip" data-trigger="cei_upload_font" data-class="media-frame"></a>');
+                link.attr('data-title', i18n.upload_title || '').attr('data-button', i18n.upload_button || '').text(i18n.upload_link || '');
+                holder.append(link);
+            } else {
+                holder.text(count + ' ' + (i18n.found || ''));
+            }
+            if (filter === "") {
+                $(".fonts-count").show();
+            }
+        });
+    };
     $.stmTrigger.icon_insert = function (event, selection, options) {
         options.input_target.val("");
         var msg = $('#msg');
@@ -53,7 +86,6 @@
                 nonce: cei_window.nonces.cei_upload_font_archive,
             },
             beforeSend: function () {
-                console.log(cei_window)
                 $('.spinner').css({
                     opacity: 0,
                     display: "block",
@@ -74,13 +106,12 @@
                     }, 5000);
                 }
                 else {
-                    msg.html("<div class='error'><p>Couldn't add the Icons Font.<br/>Error: " + response + "</p></div>");
+                    msg.empty().append($("<div class='error'></div>").append($("<p></p>").text("Couldn't add the Icons Font. Error: " + response)));
                     msg.show();
                     setTimeout(function () {
                         msg.slideUp();
                     }, 5000);
                 }
-                if (typeof console != 'undefined') console.log(response);
             }
         });
     };
@@ -134,7 +165,6 @@
                             location.reload();
                         }, 5000);
                     }
-                    if (typeof console != 'undefined') console.log(response);
                 }
             });
         }
