@@ -32,8 +32,15 @@ class DashboardController {
 				'not_found'     => __( "Can't find the icon?", 'custom-elementor-icons' ),
 				'found'         => __( 'Icons found.', 'custom-elementor-icons' ),
 				'upload_link'   => __( 'Click here to upload', 'custom-elementor-icons' ),
-				'upload_title'  => __( 'Upload/Select Fontello Font Zip', 'custom-elementor-icons' ),
+				'upload_title'  => __( 'Upload/Select IcoMoon Font Zip', 'custom-elementor-icons' ),
 				'upload_button' => __( 'Insert Fonts Zip File', 'custom-elementor-icons' ),
+				'invalid_zip'   => __( 'Please upload a valid ZIP file. You can create the file on icomoon.io', 'custom-elementor-icons' ),
+				'added'         => __( 'Icons Font added successfully! Reloading the page...', 'custom-elementor-icons' ),
+				'add_failed'    => __( "Couldn't add the Icons Font. Error:", 'custom-elementor-icons' ),
+				'confirm_delete' => __( 'Are you sure to delete this Icons Font?', 'custom-elementor-icons' ),
+				'remove_failed_retry'  => __( "Couldn't remove the Icons Font. Please reload the page, then try again.", 'custom-elementor-icons' ),
+				'removed'       => __( 'Icons Font deleted successfully! Reloading the page...', 'custom-elementor-icons' ),
+				'remove_failed_reload' => __( "Couldn't remove the Icons Font. Reloading the page...", 'custom-elementor-icons' ),
 			),
 		);
 

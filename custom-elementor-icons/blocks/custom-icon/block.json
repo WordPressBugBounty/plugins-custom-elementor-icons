@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "custom-elementor-icons/custom-icon",
+	"title": "Custom Icon",
+	"category": "design",
+	"icon": "art",
+	"description": "Shows one icon from your uploaded icon fonts, with a size, a color and an alignment.",
+	"keywords": [ "icon", "custom icons", "icomoon", "icon font" ],
+	"textdomain": "custom-elementor-icons",
+	"attributes": {
+		"font": { "type": "string", "default": "" },
+		"icon": { "type": "string", "default": "" },
+		"size": { "type": "number", "default": 32 },
+		"alignment": { "type": "string", "default": "left" },
+		"label": { "type": "string", "default": "" }
+	},
+	"supports": { "html": false, "color": { "text": true, "background": false } },
+	"editorScript": "file:./index.js"
+}

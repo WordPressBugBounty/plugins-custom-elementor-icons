@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<h2>
 		<?php esc_html_e( 'Custom Icons Manager', 'custom-elementor-icons' ); ?>
 		<a href="#stm_upload_icon" class="add-new-h2 stm_upload_icon" data-target="iconfont_upload"
-		   data-title="<?php echo esc_attr__( 'Upload/Select Fontello Font Zip', 'custom-elementor-icons' ); ?>"
+		   data-title="<?php echo esc_attr__( 'Upload/Select IcoMoon Font Zip', 'custom-elementor-icons' ); ?>"
 		   data-type="application/octet-stream, application/zip"
 		   data-button="<?php echo esc_attr__( 'Insert Fonts Zip File', 'custom-elementor-icons' ); ?>"
 		   data-trigger="cei_upload_font"

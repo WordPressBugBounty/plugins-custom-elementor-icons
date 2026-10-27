@@ -27,6 +27,10 @@
         options.input_target.val(selection.id).trigger('change');
         $("body").trigger(options.trigger, [selection, options]);
     };
+    function t(key, fallback) {
+        var i18n = (window.cei_window && window.cei_window.i18n) || {};
+        return i18n[key] || fallback;
+    }
     $(document).ready(function () {
         $.stmTrigger.media_new();
         $("body").on('cei_upload_font', $.stmTrigger.icon_insert);
@@ -70,7 +74,7 @@
         var msg = $('#msg');
         if (selection.subtype !== 'zip') {
             $('.spinner').hide();
-            msg.html("<div class='error'><p>Please upload a valid ZIP file.<br/>You can create the file on icomoon.io</p></div>");
+            msg.empty().append($("<div class='error'></div>").append($("<p></p>").text(t('invalid_zip', 'Please upload a valid ZIP file. You can create the file on icomoon.io'))));
             msg.show();
             setTimeout(function () {
                 msg.slideUp();
@@ -98,7 +102,7 @@
             success: function (response) {
                 $('.spinner').hide();
                 if (response.match(/stm_font_added/)) {
-                    msg.html("<div class='updated'><p>Icons Font added successfully! Reloading the page... </p></div>");
+                    msg.empty().append($("<div class='updated'></div>").append($("<p></p>").text(t('added', 'Icons Font added successfully! Reloading the page...'))));
                     msg.show();
                     setTimeout(function () {
                         msg.slideUp();
@@ -106,7 +110,7 @@
                     }, 5000);
                 }
                 else {
-                    msg.empty().append($("<div class='error'></div>").append($("<p></p>").text("Couldn't add the Icons Font. Error: " + response)));
+                    msg.empty().append($("<div class='error'></div>").append($("<p></p>").text(t('add_failed', "Couldn't add the Icons Font. Error:") + ' ' + response)));
                     msg.show();
                     setTimeout(function () {
                         msg.slideUp();
@@ -117,7 +121,7 @@
     };
     $.stmTrigger.icon_remove = function (event) {
         event.preventDefault();
-        if ( confirm('Are you sure to delete this Icons Font?') ) {
+        if ( confirm(t('confirm_delete', 'Are you sure to delete this Icons Font?')) ) {
             var button = $(this),
                 delete_font = button.data('delete');
             var msg = $('#msg');
@@ -141,7 +145,7 @@
                 },
                 error: function () {
                     $('.spinner').hide();
-                    msg.html("<div class='error'><p>Couldn't remove the Icons Font.<br/>Please reload the page, then try again</p></div>");
+                    msg.empty().append($("<div class='error'></div>").append($("<p></p>").text(t('remove_failed_retry', "Couldn't remove the Icons Font. Please reload the page, then try again."))));
                     msg.show();
                     setTimeout(function () {
                         msg.slideUp();
@@ -150,7 +154,7 @@
                 success: function (response) {
                     $('.spinner').hide();
                     if (response.match(/stm_font_removed/)) {
-                        msg.html("<div class='updated'><p>Icons Font deleted successfully! Reloading the page...</p></div>");
+                        msg.empty().append($("<div class='updated'></div>").append($("<p></p>").text(t('removed', 'Icons Font deleted successfully! Reloading the page...'))));
                         msg.show();
                         setTimeout(function () {
                             msg.slideUp();
@@ -158,7 +162,7 @@
                         }, 5000);
                     }
                     else {
-                        msg.html("<p><div class='error'><p>Couldn't remove the Icons Font.<br/>Reloading the page...</p></div>");
+                        msg.empty().append($("<div class='error'></div>").append($("<p></p>").text(t('remove_failed_reload', "Couldn't remove the Icons Font. Reloading the page..."))));
                         msg.show();
                         setTimeout(function () {
                             msg.slideUp();

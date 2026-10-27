@@ -13,3 +13,4 @@ if ( is_admin() ) {
  * Init Classes
  */
 new \Custom_Elementor_Icons\Classes\LoadIcons();
+\Custom_Elementor_Icons\Classes\Block::init();
