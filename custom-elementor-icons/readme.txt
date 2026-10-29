@@ -5,7 +5,7 @@ Tags: elementor, custom-icons, icomoon, gutenberg, wpbakery
 Requires at least: 5.8
 Requires PHP: 7.1
 Tested up to: 7.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,6 +85,9 @@ By default only administrators. The Custom Icons page requires the manage_option
 
 == Upgrade Notice ==
 
+= 1.1.1 =
+Removes the link to the previous author's website from the plugin header.
+
 = 1.1.0 =
 Adds a Gutenberg block for your custom icons and makes all admin messages translatable.
 
@@ -94,8 +97,12 @@ Adds a Gutenberg block for your custom icons and makes all admin messages transl
 2. The uploaded icon set appears as its own tab in the icon library of the page builder.
 3. A custom icon chosen in an icon control.
 4. The custom icons on the front end of the site.
+5. The Custom Icon block in the block editor, with the icon picker in the sidebar.
 
 == Changelog ==
+
+= 1.1.1 =
+* The author link on the Plugins screen no longer points to the previous author's website.
 
 = 1.1.0 =
 * New: "Custom Icon" Gutenberg block (Design category) to use your uploaded icons in the block editor, with an icon search grid, size, color, alignment and an optional accessible label.
